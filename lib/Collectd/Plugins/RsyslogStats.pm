@@ -6,6 +6,7 @@ use Collectd qw( :all );
 
 use File::ReadBackwards;
 
+# ABSTRACT: collectd plugin for reading queue metrics from rsyslog/imstats logfile
 # VERSION
 
 =head1 SYNOPSIS
@@ -90,7 +91,7 @@ sub read_stats_from_log {
 		if( defined $stats->{$queue} ) {
 			last;
 		}
-		$stats->{$queue} = { map { s/[\s\.]+/_/g ; $_ } split(/[ =]/, $line) };
+		$stats->{$queue} = { map { my $v = $_ ; $v =~ s/[\s\.]+/_/g ; return $v } split(/[ =]/, $line) };
 	}
 	return( $stats );
 }
