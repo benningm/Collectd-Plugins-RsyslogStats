@@ -6,8 +6,7 @@ use Collectd qw( :all );
 
 use File::ReadBackwards;
 
-our $VERSION = '0.01';
-
+# VERSION
 
 =head1 SYNOPSIS
 
